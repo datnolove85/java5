@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import Model.Staff;
+import com.example.demo.Model.Staff;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/gd2">GD2</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/gd2/category">Category</a></li>
+                <li class="nav-item"><a class="nav-link" href="/gd2/product">Product</a></li>
+                <li class="nav-item"><a class="nav-link" href="/gd2/account">Account</a></li>
+                <li class="nav-item"><a class="nav-link" href="/gd2/order-detail">Order Detail</a></li>
+                <li class="nav-item"><a class="nav-link" href="/gd2/order">Order</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!-- ================= FORM ================= -->
+    <div class="card shadow p-4 mb-4">
+        <h4 class="text-primary mb-3">ACCOUNT FORM</h4>
+
+        <form th:action="@{/gd2/account/save}" method="post" th:object="${account}">
+
+            <div class="mb-2">
+                <label>Username</label>
+                <input class="form-control" th:field="*{username}">
+                <i class="text-danger fst-italic" th:errors="*{username}"></i>
+            </div>
+
+            <div class="mb-2">
+                <label>Password</label>
+                <input class="form-control" th:field="*{password}">
+                <i class="text-danger fst-italic" th:errors="*{password}"></i>
+            </div>
+
+            <div class="mb-2">
+                <label>Fullname</label>
+                <input class="form-control" th:field="*{fullname}">
+                <i class="text-danger fst-italic" th:errors="*{fullname}"></i>
+            </div>
+
+            <div class="mb-2">
+                <label>Email</label>
+                <input class="form-control" th:field="*{email}">
+                <i class="text-danger fst-italic" th:errors="*{email}"></i>
+            </div>
+
+            <div class="mb-2">
+                <label>Photo</label>
+                <input class="form-control" th:field="*{photo}">
+                <i class="text-danger fst-italic" th:errors="*{photo}"></i>
+            </div>
+
+            <div class="mb-2">
+                <label>Activated</label>
+                <select class="form-control" th:field="*{activated}">
+                    <option value="">-- Select --</option>
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                </select>
+                <i class="text-danger fst-italic" th:errors="*{activated}"></i>
+            </div>
+
+            <div class="mb-3">
+                <label>Role</label>
+                <select class="form-control" th:field="*{admin}">
+                    <option value="">-- Select --</option>
+                    <option value="true">Admin</option>
+                    <option value="false">User</option>
+                </select>
+                <i class="text-danger fst-italic" th:errors="*{admin}"></i>
+            </div>
+
+            <button class="btn btn-success">Save</button>
+        </form>
+    </div>
+
+
+    <div class="card shadow p-4">
+        <h4 class="text-primary mb-3">ACCOUNT LIST</h4>
+
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Fullname</th>
+                <th>Email</th>
+                <th>Photo</th>
+                <th>Activated</th>
+                <th>Role</th>
+                <th width="160">Action</th>
+            </tr>
+
+            <tr th:each="a : ${items}">
+                <td th:text="${a.username}"></td>
+                <td th:text="${a.password}"></td>
+                <td th:text="${a.fullname}"></td>
+                <td th:text="${a.email}"></td>
+                <td th:text="${a.photo}"></td>
+
+                <td th:text="${a.activated==true ? 'Active' : 'Inactive'}"></td>
+                <td th:text="${a.admin==true ? 'Admin' : 'User'}"></td>
+                <td>
+                    <a th:href="@{'/gd2/account/edit/' + ${a.username}}"
+                       class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{'/gd2/account/delete/' + ${a.username}}"
+                       class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

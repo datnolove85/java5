@@ -1,13 +1,13 @@
 package com.example.demo.controller;
 
-import Model.Product;
+import com.example.demo.Model.Productt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ProductController {
+public class ProductController2 {
 
     @RequestMapping("/form")
     public String form() {
@@ -15,9 +15,9 @@ public class ProductController {
     }
 
     @PostMapping("/product/save")
-    public String save(Product product, Model model) {
-        model.addAttribute("name", product.getName());
-        model.addAttribute("price", product.getPrice());
+    public String save(Productt productt, Model model) {
+        model.addAttribute("name", productt.getName());
+        model.addAttribute("price", productt.getPrice());
         return "Lab2/form";
     }
 }

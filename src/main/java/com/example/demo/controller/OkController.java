@@ -26,13 +26,11 @@ public class OkController {
         return "ok";
     }
 
-    @PostMapping(value = "/ok",params = "x")
+    @PostMapping(value = "/ok", params = "x")
     public String m3(Model model) {
         model.addAttribute("msg", "m3()");
         return "ok";
     }
-
-
 
 
 }

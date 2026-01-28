@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/gd2">GD2</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/gd2/category">Category</a></li>
+                <li class="nav-item"><a class="nav-link" href="/gd2/product">Product</a></li>
+                <li class="nav-item"><a class="nav-link" href="/gd2/account">Account</a></li>
+                <li class="nav-item"><a class="nav-link" href="/gd2/order-detail">Order Detail</a></li>
+                <li class="nav-item"><a class="nav-link" href="/gd2/order">Order</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+
+    <div class="card shadow p-4 mb-4">
+        <h4 class="text-primary mb-3">ORDER DETAIL FORM</h4>
+
+        <form th:action="@{/gd2/order-detail/save}" method="post"
+              th:object="${orderDetail}">
+            <div class="mb-2">
+                <label>ID</label>
+                <input class="form-control" th:field="*{id}" readonly="readonly">
+                <i class="text-danger fst-italic" th:errors="*{id}"></i>
+            </div>
+            <div class="mb-2">
+                <label>Order ID</label>
+                <input class="form-control" th:field="*{orderId}">
+                <i class="text-danger fst-italic" th:errors="*{orderId}"></i>
+            </div>
+
+            <div class="mb-2">
+                <label>Product ID</label>
+                <input class="form-control" th:field="*{productId}">
+                <i class="text-danger fst-italic" th:errors="*{productId}"></i>
+            </div>
+
+            <div class="mb-2">
+                <label>Price</label>
+                <input type="number" step="0.01" class="form-control" th:field="*{price}">
+                <i class="text-danger fst-italic" th:errors="*{price}"></i>
+            </div>
+
+            <div class="mb-3">
+                <label>Quantity</label>
+                <input type="number" class="form-control" th:field="*{quantity}">
+                <i class="text-danger fst-italic" th:errors="*{quantity}"></i>
+            </div>
+
+            <div class="d-flex gap-2 mb-3">
+                <a href="/gd2/order-detail" class="btn btn-primary">Clear</a>
+                <button class="btn btn-success">Save</button>
+            </div>
+
+        </form>
+    </div>
+
+
+    <div class="card shadow p-4">
+        <h4 class="text-primary mb-3">ORDER DETAIL LIST</h4>
+
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Order</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th width="160">Action</th>
+            </tr>
+
+            <tr th:each="d : ${items}">
+                <td th:text="${d.id}"></td>
+                <td th:text="${d.orderId}"></td>
+                <td th:text="${d.productId}"></td>
+                <td th:text="${d.price}"></td>
+                <td th:text="${d.quantity}"></td>
+                <td>
+                    <a th:href="@{'/gd2/order-detail/edit/' + ${d.id}}"
+                       class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{'/gd2/order-detail/delete/' + ${d.id}}"
+                       class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

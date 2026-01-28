@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+
+<form method="post" th:object="${student}" th:action="@{/student/crud}">
+    ID:
+    <input type="text" th:field="*{id}"/>
+    <i th:errors="*{id}"></i>
+    <br>
+    StudentCode:
+    <input type="text" th:field="*{studentCode}"/>
+    <i th:errors="*{studentCode}"></i>
+    <br>
+    Name:
+    <input type="text" th:field="*{fullName}"/>
+    <i th:errors="*{fullName}"></i>
+    <br>
+    Gender:
+    <input type="radio" th:field="*{gender}" value="Male"/>Nam
+    <input type="radio" th:field="*{gender}" value="Female"/>Female
+    <i th:errors="*{gender}"></i>
+    <br>
+    Email:
+    <input type="text" th:field="*{email}"/>
+    <i th:errors="*{email}"></i>
+    <br>
+    Phone:
+    <input type="text" th:field="*{phone}"/>
+    <i th:errors="*{phone}"></i>
+    <br>
+    Major:
+    <input type="text" th:field="*{major}"/>
+    <i th:errors="*{major}"></i>
+    <br>
+    ClassName:
+    <input type="text" th:field="*{className}"/>
+    <i th:errors="*{className}"></i>
+    <button type="submit" name="name" value="add">Add</button>
+    <button type="submit" name="name" value="update">Update</button>
+    <button type="submit" name="name" value="delete">Delete</button>
+</form>
+<hr>
+<table border="1">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>ID</th>
+        <th>StudentCode</th>
+        <th>Fullname</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Major</th>
+        <th>ClassName</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="std,s:${list}">
+        <td th:text="${s.count}"></td>
+        <td th:text="${std.id}"></td>
+        <td th:text="${std.studentCode}"></td>
+        <td th:text="${std.fullName}"></td>
+        <td th:text="${std.gender}"></td>
+        <td th:text="${std.email}"></td>
+        <td th:text="${std.phone}"></td>
+        <td th:text="${std.major}"></td>
+        <td th:text="${std.className}"></td>
+        <a th:href="@{/student/delete/(id=${std.id})}">Delete</a>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

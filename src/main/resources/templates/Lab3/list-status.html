@@ -7,9 +7,32 @@
 <body>
    <table border="1">
        <thead>
-       <th>Họ và tên</th>
-       <th>Giá trị các thuộc tính trạng thái</th>
+       <tr>
+           <th rowspan="2">Họ và tên</th>
+           <th colspan="6">Các thuộc tính trạng thái</th>
+       </tr>
+       <tr>
+           <th>Index</th>
+           <th>Count</th>
+           <th>First</th>
+           <th>Last</th>
+           <th>Odd</th>
+           <th>Even</th>
+       </tr>
        </thead>
+       <tbody>
+         <th:block th:each="staff,st:${list}">
+             <tr>
+                 <td th:text="${#strings.capitalizeWords(staff.fullname)}"></td>
+                 <td th:text="${st.index}"></td>
+                 <td th:text="${st.count}"></td>
+                 <td th:text="${st.first}"></td>
+                 <td th:text="${st.last}"></td>
+                 <td th:text="${st.odd}"></td>
+                 <td th:text="${st.even}"></td>
+             </tr>
+         </th:block>
+       </tbody>
    </table>
 </body>
 </html>

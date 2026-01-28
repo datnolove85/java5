@@ -1,4 +1,4 @@
-package Model;
+package com.example.demo.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Product {
+public class Productt {
     private String name;
     private Double price;
 }
