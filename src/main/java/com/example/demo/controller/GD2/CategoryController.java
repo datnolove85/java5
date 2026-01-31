@@ -18,8 +18,8 @@ public class CategoryController {
 
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("category", new Category());      // FORM TRỐNG
-        model.addAttribute("items", categoryRepo.findAll()); // BẢNG
+        model.addAttribute("category", new Category());
+        model.addAttribute("items", categoryRepo.findAll());
         return "gd2/category/index";
     }
 
